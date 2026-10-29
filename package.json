@@ -1,0 +1,50 @@
+{
+  "name": "pi-deepseek-balance",
+  "version": "0.1.0",
+  "description": "pi extension: show the official DeepSeek account balance in the status bar, only while the current model runs on api.deepseek.com",
+  "keywords": [
+    "pi",
+    "pi-extension",
+    "pi-package",
+    "coding-agent",
+    "status-bar",
+    "balance",
+    "deepseek",
+    "billing",
+    "cost",
+    "deepseek-auto"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "ymy88",
+    "url": "https://github.com/ymy88"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymy88/pi-deepseek-balance.git"
+  },
+  "homepage": "https://github.com/ymy88/pi-deepseek-balance#readme",
+  "bugs": {
+    "url": "https://github.com/ymy88/pi-deepseek-balance/issues"
+  },
+  "type": "module",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "index.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types test/format.test.ts"
+  }
+}

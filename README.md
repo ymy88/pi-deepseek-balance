@@ -42,7 +42,7 @@
 ## 安装
 
 ```bash
-pi install npm:pi-deepseek-balance
+pi install npm:@ymy88/pi-deepseek-balance
 ```
 
 也可以直接装 git 版本，或者装本地目录：

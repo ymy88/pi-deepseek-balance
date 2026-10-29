@@ -1,5 +1,5 @@
 {
-  "name": "pi-deepseek-balance",
+  "name": "@ymy88/pi-deepseek-balance",
   "version": "0.1.0",
   "description": "pi extension: show the official DeepSeek account balance in the status bar, only while the current model runs on api.deepseek.com",
   "keywords": [
@@ -29,7 +29,8 @@
   },
   "type": "module",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "files": [
     "index.ts",

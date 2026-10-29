@@ -60,7 +60,7 @@ assert.equal(colorRole({ ...cnyFirst, available: false, usd: 99 }), "error");
 // 状态栏文本
 assert.equal(renderBalance(identity, balance), "💵 DS $0.00");
 assert.equal(renderBalance(identity, cnyOnly), "💵 DS ¥70.00");
-assert.match(formatDetails(balance), /不可用/);
+assert.match(formatDetails(balance), /unavailable/);
 
 // 主机名匹配
 assert.equal(hostOf("https://api.deepseek.com"), "api.deepseek.com");

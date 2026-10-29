@@ -84,8 +84,8 @@ export function renderBalance(fg: (role: string, text: string) => string, b: Bal
 /** /deepseek-balance 的详情。 */
 export function formatDetails(b: Balance): string {
 	const lines = b.infos.map((m) => `${m.currency} ${m.total.toFixed(2)}`);
-	const state = b.available ? "可用" : "不可用（余额不足或账户被停用，DeepSeek 会拒绝新请求）";
-	return `DeepSeek 余额：${lines.join(" / ")}\n状态：${state}`;
+	const state = b.available ? "available" : "unavailable (balance too low or account disabled; DeepSeek rejects new requests)";
+	return `DeepSeek balance: ${lines.join(" / ")}\nStatus: ${state}`;
 }
 
 /** 取 URL 的主机名，解析失败返回 undefined。 */
@@ -208,7 +208,7 @@ export default function deepseekBalance(pi: ExtensionAPI) {
 		}
 		if (!cache) {
 			const text =
-				failure === "auth" ? `💵 ${LABEL} 登录✗` : failure === "no-key" ? `💵 ${LABEL} 无密钥` : `💵 ${LABEL} ✗`;
+				failure === "auth" ? `💵 ${LABEL} login ✗` : failure === "no-key" ? `💵 ${LABEL} no key` : `💵 ${LABEL} ✗`;
 			setStatus(STATUS_KEY, fg("dim", text));
 			return;
 		}
@@ -236,11 +236,11 @@ export default function deepseekBalance(pi: ExtensionAPI) {
 	});
 
 	pi.registerCommand(COMMAND, {
-		description: "显示 DeepSeek 官方余额并强制刷新",
+		description: "Show the DeepSeek balance and refresh it now",
 		handler: async (_args, ctx) => {
 			lastCtx = ctx;
 			if (!provider(ctx)) {
-				ctx?.ui?.notify?.(`当前模型不在 DeepSeek 官方端点上，没有可显示的 ${LABEL} 余额`, "info");
+				ctx?.ui?.notify?.(`The current model does not run on the official DeepSeek endpoint, so there is no ${LABEL} balance to show`, "info");
 				return;
 			}
 			fetchedAt = 0; // 强制刷新
@@ -248,10 +248,10 @@ export default function deepseekBalance(pi: ExtensionAPI) {
 			if (!balance) {
 				const hint =
 					failure === "auth"
-						? "DeepSeek 密钥无效，请用 /login 重新登录 deepseek"
+						? "The DeepSeek key is invalid. Run /login deepseek to sign in again."
 						: failure === "no-key"
-							? "没有找到 deepseek 的密钥，请用 /login 登录"
-							: "查询 DeepSeek 余额失败，请检查网络后重试";
+							? "No deepseek key found. Run /login deepseek to sign in."
+							: "Could not read the DeepSeek balance. Check the network and try again.";
 				ctx?.ui?.notify?.(hint, "error");
 				return;
 			}

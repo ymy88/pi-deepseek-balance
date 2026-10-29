@@ -37,7 +37,7 @@ The USD entry is preferred. When there is no USD balance, the first currency in 
 | Balance < threshold (5 by default) | Yellow |
 | Otherwise | Normal |
 
-When the query fails, the status reads a dim `💵 DS 登录✗` / `💵 DS 无密钥` / `💵 DS ✗`. A 401 or 403 clears the cache so a stale number is never shown.
+When the query fails, the status reads a dim `💵 DS login ✗` / `💵 DS no key` / `💵 DS ✗`. A 401 or 403 clears the cache so a stale number is never shown.
 
 ## Install
 
